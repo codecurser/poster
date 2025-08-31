@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Obscura Poster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* switch to professional dark theme anchored on #101010 */
+        :root {
+            --primary-bg-color: #101010;
+            --secondary-bg-color: #151515;
+            --primary-text-color: #f5f5f5;
+            --secondary-text-color: #9ca3af;
+            --border-color: #1f1f1f;
+            --card-shadow: rgba(0, 0, 0, 0.4);
+            --card-hover-shadow: rgba(0, 0, 0, 0.6);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-bg-color);
+            color: var(--primary-text-color);
+            margin: 0;
+            padding: 0;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            text-align: center;
+            animation: backgroundFade 15s infinite alternate ease-in-out;
+        }
+
+        @keyframes backgroundFade {
+            from { background-color: #101010; }
+            to { background-color: #0e0e0e; }
+        }
+
+        .poster-container {
+            width: 90%;
+            max-width: 1000px;
+            background-color: var(--secondary-bg-color);
+            padding: 4rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 40px var(--card-shadow);
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* refine hover motion, remove rotation to keep professionalism */
+        .poster-container:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 18px 60px var(--card-hover-shadow);
+        }
+
+        .logo {
+            max-width: 250px;
+            height: auto;
+            margin-bottom: 0.5rem;
+            animation: fadeInLogo 1s ease-in-out;
+        }
+
+        @keyframes fadeInLogo {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-weight: 300;
+            margin-top: 0.5rem;
+            margin-bottom: 3rem;
+            color: var(--secondary-text-color);
+            opacity: 0;
+            animation: fadeIn 1s 0.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .team-section {
+            background-color: var(--secondary-bg-color);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 6px 15px var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* lighten hover wash on dark background */
+        .team-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .team-section:hover::before {
+            transform: scaleX(1);
+        }
+
+        .team-section:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 15px 30px var(--card-hover-shadow);
+        }
+
+        .team-section h2 {
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin: 0 0 1.5rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        li {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            margin-bottom: 0.75rem;
+            transition: transform 0.3s ease-in-out, color 0.3s ease;
+            position: relative;
+        }
+
+        li::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-text-color);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .team-section:hover li::before {
+            opacity: 1;
+        }
+
+        .team-section:hover li {
+            transform: translateX(10px);
+            color: var(--primary-text-color);
+        }
+
+        .role {
+            font-size: 0.8em;
+            font-weight: 400;
+            color: var(--secondary-text-color);
+            display: block;
+            margin-top: 0.2em;
+        }
+
+        .extras {
+            font-style: italic;
+            font-size: 0.7em;
+            margin-top: 0.2rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .poster-container {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster-container">
+        <!-- replace logo with the provided Source URL -->
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/obscura%20bg%20removed-m3yJPmyvUYYrUuvn7HayL1MP57XHeR.png" alt="Club Obscura Logo" class="logo">
+        <p class="tagline">Capturing moments, creating art.</p>
+        <div class="section-grid">
+            <div class="team-section">
+                <h2>Leadership</h2>
+                <ul>
+                    <li>Manav <br><span class="role">(Co-ordinator)</span></li>
+                    <li>Aryan Sharma <br><span class="role">(Co-Cordinator)</span></li>
+                </ul>
+            </div>
+            <div class="team-section">
+                <h2>Creative Heads</h2>
+                <ul>
+                    <li>Harshvardhan <br><span class="role">(Photography Head)</span></li>
+                    <li>Sri Ram Reddy <br><span class="role">(Videography Head)</span></li>
+                    <li>Gungun <br><span class="role">(Social Media Head)</span><br><span class="extras">with Anshvi, Mridul</span></li>
+                </ul>
+            </div>
+            <div class="team-section">
+                <h2>Shoot Team Leads & Editors</h2>
+                <ul>
+                    <li>Rajvir, Rainy <br><span class="role">(Shoot Team Incharge)</span></li>
+                    <li>Saksham Sharma, Anmol Pandey <br><span class="role">(Editor)</span></li>
+                </ul>
+            </div>
+            <div class="team-section">
+                <h2>Shoot Team</h2>
+                <ul>
+                    <li>Rashi Chauhan</li>
+                    <li>Rishav Gupta</li>
+                    <li>Priyanshi</li>
+                    <li>Aviral Khare</li>
+                    <li>Chirag Dadwal</li>
+                    <li>Akash Pradipta</li>
+                    <li>Dhruv Sharma</li>
+                    <li>Saviyanshi</li>
+                    <li>Anmol Pandey</li>
+                    <li>Muskan</li>
+                    <li>Arjun Singh</li>
+                </ul>
+            </div>
+            <div class="team-section">
+                <h2>Volunteers</h2>
+                <ul>
+                    <li>Prakrati</li>
+                    <li>Anjali Talan</li>
+                    <li>Harshit Raj</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
